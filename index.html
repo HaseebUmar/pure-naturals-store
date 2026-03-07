@@ -1,0 +1,115 @@
+git add .
+git commit -m "Initial commit - add Pure Naturals store"<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pure Naturals Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div id="overlay" class="overlay" onclick="closeAll()"></div>
+
+<header class="navbar">
+
+<div class="nav-container">
+
+<div class="logo">
+<h2>Pure Naturals</h2>
+</div>
+
+<nav class="nav-links">
+<a href="#">Home</a>
+<a href="#productList">Products</a>
+<a href="javascript:void(0)" onclick="toggleCart()">Cart</a>
+<a href="javascript:void(0)" onclick="showCheckoutDirectly()">Checkout</a>
+</nav>
+
+<button class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cartCount">0</span>
+</button>
+
+</div>
+
+</header>
+
+<div id="imageModal" class="modal" onclick="closeModal()">
+<span class="close">&times;</span>
+<img class="modal-content" id="fullImage">
+<div id="caption"></div>
+</div>
+
+<section class="hero">
+
+<h2>100% Natural Hair & Skin Care</h2>
+
+<input type="text" id="searchInput"
+placeholder="Search products..."
+onkeyup="searchProducts()">
+
+</section>
+
+<section class="products" id="productList"></section>
+
+<section class="cart-drawer" id="cartSection">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="totalPrice">Total: Rs.0</h3>
+
+<button onclick="showCheckoutDirectly()">Checkout</button>
+
+<button onclick="clearCart()">Clear Cart</button>
+
+</section>
+
+<section class="checkout-modal" id="checkoutForm">
+
+<h2>Checkout</h2>
+
+<input type="text" id="name" placeholder="Your Name">
+
+<input type="tel" id="phone" placeholder="Phone Number">
+
+<textarea id="address" placeholder="Address"></textarea>
+
+<button onclick="submitOrder()">Confirm Order</button>
+
+</section>
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div>
+<h3>Pure Naturals</h3>
+<p>Natural skincare & haircare products.</p>
+</div>
+
+<div>
+<h3>Links</h3>
+<a href="#">Home</a>
+<a href="#productList">Products</a>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>0300-0000000</p>
+<p>Karachi Pakistan</p>
+</div>
+
+</div>
+
+<p class="copy">© 2026 Pure Naturals</p>
+
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
