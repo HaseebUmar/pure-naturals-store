@@ -1,3 +1,8 @@
+// Hamburger toggle
+function toggleNav() {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("active");
+}
 const products = [
     { name: "Amla Oil", price: 350, img: "https://i.postimg.cc/Zqg0cR9R/IMG-20250724-WA0011.jpg" },
     { name: "Castor Oil", price: 300, img: "https://i.postimg.cc/fT7ffZkc/IMG-20250724-WA0017.jpg" },
