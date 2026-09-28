@@ -1,77 +1,481 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Pure Naturals Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta
+    name="description"
+    content="Pure Naturals — a clean and responsive natural skincare and haircare store."
+>
+
+<meta name="theme-color" content="#315c45">
+
+<title>Pure Naturals | Natural Hair & Skin Care</title>
+
 <link rel="stylesheet" href="css/style.css">
+
+
 </head>
+
 <body>
 
-<div id="overlay" class="overlay" onclick="closeAll()"></div>
 
+<!-- =========================
+     Overlay
+========================== -->
+<div
+    id="overlay"
+    class="overlay"
+    aria-hidden="true"
+    onclick="closeAll()"
+></div>
+
+
+<!-- =========================
+     Header / Navigation
+========================== -->
 <header class="navbar">
-  <div class="nav-container">
-    <div class="logo">
-      <h2>Pure Naturals</h2>
+    <div class="nav-container">
+
+        <a href="#" class="logo" aria-label="Pure Naturals Home">
+            <span class="logo-mark">PN</span>
+
+            <span class="logo-text">
+                <strong>Pure Naturals</strong>
+                <small>Natural Care</small>
+            </span>
+        </a>
+
+
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+
+            <a href="#" class="nav-link">Home</a>
+
+            <a href="#productList" class="nav-link">
+                Products
+            </a>
+
+            <button
+                type="button"
+                class="nav-link nav-button"
+                onclick="toggleCart()"
+            >
+                Cart
+                <span id="cartCount" class="cart-count">0</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-link nav-button"
+                onclick="showCheckoutDirectly()"
+            >
+                Checkout
+            </button>
+
+        </nav>
+
+
+        <button
+            type="button"
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open navigation menu"
+            aria-controls="navLinks"
+            aria-expanded="false"
+            onclick="toggleNav()"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
-
-    <!-- Desktop links -->
-    <nav class="nav-links" id="navLinks">
-      <a href="#">Home</a>
-      <a href="#productList">Products</a>
-      <a href="javascript:void(0)" onclick="toggleCart()">Cart</a>
-      <a href="javascript:void(0)" onclick="showCheckoutDirectly()">Checkout</a>
-    </nav>
-
-    <!-- Hamburger for mobile -->
-    <button class="hamburger" onclick="toggleNav()">☰</button>
-  </div>
 </header>
 
-<section class="hero">
-  <h2>100% Natural Hair & Skin Care</h2>
-  <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+
+<main>
+
+    <!-- =========================
+         Hero
+    ========================== -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                NATURAL • SIMPLE • EVERYDAY
+            </span>
+
+            <h1>
+                Natural care for
+                <span>your everyday routine.</span>
+            </h1>
+
+            <p>
+                Discover a simple collection of haircare and skincare
+                essentials designed for everyday self-care.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#productList" class="primary-button">
+                    Explore Products
+                </a>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="toggleCart()"
+                >
+                    View Cart
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Products
+    ========================== -->
+    <section class="products-section" id="products">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    OUR COLLECTION
+                </span>
+
+                <h2>Natural essentials</h2>
+
+                <p>
+                    Explore our selection of hair and skincare products.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="product-tools">
+
+            <div class="search-box">
+
+                <span class="search-icon" aria-hidden="true">
+                    ⌕
+                </span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    aria-label="Search products"
+                >
+
+                <button
+                    type="button"
+                    class="search-clear"
+                    id="searchClear"
+                    aria-label="Clear search"
+                    onclick="clearSearch()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="products"
+            id="productList"
+            aria-live="polite"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     Cart Drawer
+========================== -->
+<aside
+    class="cart-drawer"
+    id="cartSection"
+    aria-label="Shopping cart"
+    aria-hidden="true"
+>
+
+    <div class="drawer-header">
+
+        <div>
+            <span class="section-label">YOUR BAG</span>
+            <h2>Your Cart</h2>
+        </div>
+
+        <button
+            type="button"
+            class="close-button"
+            aria-label="Close cart"
+            onclick="toggleCart()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        id="cartItems"
+        class="cart-items"
+    ></div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="totalPrice">Rs. 0</strong>
+        </div>
+
+        <button
+            type="button"
+            class="primary-button full-button"
+            onclick="showCheckoutDirectly()"
+        >
+            Proceed to Checkout
+        </button>
+
+        <button
+            type="button"
+            class="text-button"
+            onclick="clearCart()"
+        >
+            Clear Cart
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     Checkout Modal
+========================== -->
+<section
+    class="checkout-modal"
+    id="checkoutForm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="checkoutTitle"
+>
+
+    <div class="modal-header">
+
+        <div>
+            <span class="section-label">ORDER DETAILS</span>
+            <h2 id="checkoutTitle">Checkout</h2>
+        </div>
+
+        <button
+            type="button"
+            class="close-button"
+            aria-label="Close checkout"
+            onclick="closeAll()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <p class="modal-description">
+        Enter your delivery details and confirm your order through WhatsApp.
+    </p>
+
+
+    <form id="checkoutDetails" onsubmit="event.preventDefault(); submitOrder();">
+
+        <div class="form-group">
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="03XX XXXXXXX"
+                autocomplete="tel"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="address">
+                Delivery Address
+            </label>
+
+            <textarea
+                id="address"
+                name="address"
+                rows="4"
+                placeholder="Enter your complete delivery address"
+                autocomplete="street-address"
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="primary-button full-button"
+        >
+            Confirm Order via WhatsApp
+        </button>
+
+    </form>
+
 </section>
 
-<section class="products" id="productList"></section>
 
-<section class="cart-drawer" id="cartSection">
-  <h2>Your Cart</h2>
-  <div id="cartItems"></div>
-  <h3 id="totalPrice">Total: Rs.0</h3>
-  <button onclick="showCheckoutDirectly()">Checkout</button>
-  <button onclick="clearCart()">Clear Cart</button>
+<!-- =========================
+     Image Modal
+========================== -->
+<section
+    class="image-modal"
+    id="imageModal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Product image"
+    onclick="closeModal()"
+>
+
+    <button
+        type="button"
+        class="image-close"
+        aria-label="Close image"
+        onclick="closeModal()"
+    >
+        ×
+    </button>
+
+    <div class="image-modal-content" onclick="event.stopPropagation()">
+
+        <img
+            id="fullImage"
+            src=""
+            alt="Product preview"
+        >
+
+        <p id="caption"></p>
+
+    </div>
+
 </section>
 
-<section class="checkout-modal" id="checkoutForm">
-  <h2>Checkout</h2>
-  <input type="text" id="name" placeholder="Your Name">
-  <input type="tel" id="phone" placeholder="Phone Number">
-  <textarea id="address" placeholder="Address"></textarea>
-  <button onclick="submitOrder()">Confirm Order</button>
-</section>
 
+<!-- =========================
+     Footer
+========================== -->
 <footer class="footer">
-  <div class="footer-container">
-    <div>
-      <h3>Pure Naturals</h3>
-      <p>Natural skincare & haircare products.</p>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a href="#" class="logo footer-logo">
+                <span class="logo-mark">PN</span>
+
+                <span class="logo-text">
+                    <strong>Pure Naturals</strong>
+                    <small>Natural Care</small>
+                </span>
+            </a>
+
+            <p>
+                A representative e-commerce frontend project focused on
+                natural skincare and haircare products.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Explore</h3>
+
+            <a href="#">Home</a>
+            <a href="#productList">Products</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Contact</h3>
+
+            <a href="tel:03000000000">
+                0300-0000000
+            </a>
+
+            <p>
+                Karachi, Pakistan
+            </p>
+
+        </div>
+
     </div>
-    <div>
-      <h3>Links</h3>
-      <a href="#">Home</a>
-      <a href="#productList">Products</a>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Pure Naturals. Representative project.
+        </p>
+
+        <p>
+            Built with HTML, CSS & JavaScript.
+        </p>
+
     </div>
-    <div>
-      <h3>Contact</h3>
-      <p>0300-0000000</p>
-      <p>Karachi Pakistan</p>
-    </div>
-  </div>
-  <p class="copy">© 2026 Pure Naturals</p>
+
 </footer>
 
+
+<!-- =========================
+     JavaScript
+========================== -->
 <script src="js/app.js"></script>
+
+
 </body>
 </html>
